@@ -1,0 +1,46 @@
+
+<div class="welcome">{{result.person.preferredName.display}}  Demographic Info</div>
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.person.preferredName.display}} </td>
+      </ng-container>
+    
+      
+      <ng-container matColumnDef="Age">
+        <th mat-header-cell *matHeaderCellDef> Age </th>
+        <td mat-cell *matCellDef="let element"> {{element.person.age}} </td>
+      </ng-container>
+    
+     
+      <ng-container matColumnDef="Gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell *matCellDef="let element"> {{element.person.gender}} </td>
+      </ng-container>
+    
+     
+      <ng-container matColumnDef="DOB">
+        <th mat-header-cell *matHeaderCellDef> DOB </th>
+        <td mat-cell *matCellDef="let element"> {{element.person.birthdate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.person.preferredAddress.address1 ? element.person.preferredAddress.address1 :'' }}
+             {{element.person.preferredAddress.cityVillage ? ","+ element.person.preferredAddress.cityVillage : ''}} 
+            {{element.person.preferredAddress.country ? "," + element.person.preferredAddress.country : ''}} 
+            {{ element.person.preferredAddress.postalCode ? "," + element.person.preferredAddress.postalCode : ''}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="DisplayID">
+        <th mat-header-cell *matHeaderCellDef> DisplayID </th>
+        <td mat-cell *matCellDef="let element"> {{element.display.split("-")[0]}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

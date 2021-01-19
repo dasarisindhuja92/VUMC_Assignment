@@ -1,0 +1,35 @@
+﻿
+
+<!-- <form [formGroup]="patientSearchForm" (ngSubmit)="getSearchPatien()"> -->
+<!-- <input matInput formControlName="name" placeholder="Search"/> -->
+<div style="text-align:center;margin-top:5%;">
+<mat-form-field>
+    <mat-label> Search patient</mat-label>
+    <input matInput type="text" placeholder="Ex: John" [(ngModel)]="patientName">
+</mat-form-field>
+
+<button mat-button color="primary" (click)="getSearchPatien()"> Search</button>
+<!-- <button>search</button> -->
+   
+</div>
+<!-- </form> -->
+
+<div *ngIf="tableSearch">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td  class="hover" mat-cell *matCellDef="let element"> {{element.person.display}} </td>
+      </ng-container>
+ 
+
+      <ng-container matColumnDef="Display ID">
+        <th mat-header-cell *matHeaderCellDef> Display ID </th>
+        <td class="hover" mat-cell *matCellDef="let element"> {{element.display.split("-")[0]}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row (click)="getPatientInfo(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+   </div>
